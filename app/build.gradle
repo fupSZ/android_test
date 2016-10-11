@@ -4,6 +4,12 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets'] //多了一个assets目录
+        }
+    }
+
     defaultConfig {
         applicationId "com.androidtest.fup.dextest"
         minSdkVersion 15

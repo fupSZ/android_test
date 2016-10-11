@@ -10,7 +10,15 @@
     tools:context="com.androidtest.fup.dextest.MainActivity">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <Button
+        android:layout_below="@id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="load_dex"/>
 </RelativeLayout>
