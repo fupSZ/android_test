@@ -7,7 +7,9 @@ package com.algorithm.test;
 public class MergeSort implements ISort{
     @Override
     public int[] sort(int[] a, int length, boolean isAscend) {
-        return sortDown(a, length, isAscend);
+        IntPointer pointer = new IntPointer(a, 0 ,length);
+        sortDown(pointer, isAscend);
+        return null;
     }
 
     //自低向上
@@ -17,50 +19,51 @@ public class MergeSort implements ISort{
     }
 
     //递归向下
-    private int[] sortDown(int[] a, int length, boolean isAscend) {
-        if(length <= 1) {
-            return a;
+    private void sortDown(IntPointer array, boolean isAscend) {
+        if(array.getLength() <= 1) {
+            return;
         }
-        int leftLen = length /2;
-        int rightLen = length - leftLen;
+        int leftLen = array.getLength() /2;
+        int rightLen = array.getLength() - leftLen;
 
-        int[] left = new int[leftLen];
-        int[] right = new int[rightLen];
-        System.arraycopy(a, 0, left, 0, leftLen);
-        System.arraycopy(a, leftLen, right, 0, rightLen);
+        IntPointer left = array.newPoint(0, leftLen);
+        IntPointer right = array.newPoint(leftLen, rightLen);
 
-        left = sortDown(left, leftLen, isAscend);
-        right = sortDown(right, rightLen, isAscend);
+        sortDown(left, isAscend);
+        sortDown(right, isAscend);
 
-        return merge(left, leftLen, right, rightLen, isAscend);
+        merge(left, right, isAscend);
     }
 
-    private static int[] merge(int[] left, int leftLen, int[] right, int rightLen, boolean isAscend) {
-         int res[] = new int[leftLen + rightLen];
+    private static void merge(IntPointer left, IntPointer right, /*int[] left, int leftLen, int[] right, int rightLen,*/ boolean isAscend) {
+        int leghtSum = left.getLength() + right.getLength();
+        int res[] = new int[leghtSum];
         int leftIndex = 0;
         int rightIndex = 0;
-        for(int i =0; i<leftLen + rightLen; i++) {
-            if(leftIndex >= leftLen) {//左侧已完成
-                res[i] = right[rightIndex++];
-            } else if(rightIndex >= rightLen) {
-                res[i] = left[leftIndex++];
+        for(int i =0; i<leghtSum; i++) {
+            if(leftIndex >= left.getLength()) {//左侧已完成
+                res[i] = right.get(rightIndex++);
+            } else if(rightIndex >= right.getLength()) {
+                res[i] = left.get(leftIndex++);
             } else {
                 if(isAscend) {
-                    if(left[leftIndex] <= right[rightIndex]) {
-                        res[i] = left[leftIndex++];
+                    if(left.get(leftIndex) <= right.get(rightIndex)) {
+                        res[i] = left.get(leftIndex++);
                     } else {
-                        res[i] = right[rightIndex++];
+                        res[i] = right.get(rightIndex++);
                     }
                 } else {
-                    if(left[leftIndex] <= right[rightIndex]) {
-                        res[i] = right[rightIndex++];
+                    if(left.get(leftIndex) <= right.get(rightIndex)) {
+                        res[i] = right.get(rightIndex++);
                     } else {
-                        res[i] = left[leftIndex++];
+                        res[i] = left.get(leftIndex++);
                     }
                 }
             }
         }
-        return res;
+        for(int i=0; i<leghtSum; i++) {
+            left.setPos(i, res[i]);
+        }
     }
 
     public static void main(String[] argv) {
@@ -68,9 +71,12 @@ public class MergeSort implements ISort{
         for(int i=0; i<8; i++) {
             a[i] = i;
         }
-        int[] b = new int[4];
-        System.arraycopy(a, 4, b, 0, 4);
+//        int[] b = new int[4];
+//        System.arraycopy(a, 4, b, 0, 4);
 
 //        merge(a, 4, b, 4);
+        ArrayTest.printArray(a, a.length);
+        new MergeSort().sort(a, 8, false);
+        ArrayTest.printArray(a, a.length);
     }
 }

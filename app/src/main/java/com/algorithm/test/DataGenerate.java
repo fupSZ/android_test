@@ -13,7 +13,7 @@ public class DataGenerate {
         ArrayTest.printArray(array, array.length);
 
         MergeSort sort = new MergeSort();
-        array = sort.sort(array, array.length, true);
+        sort.sort(array, array.length, true);
 
         System.out.print("----after sort-----\n");
 
