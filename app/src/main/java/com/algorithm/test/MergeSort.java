@@ -6,10 +6,9 @@ package com.algorithm.test;
  */
 public class MergeSort implements ISort{
     @Override
-    public int[] sort(int[] a, int length, boolean isAscend) {
+    public void sort(int[] a, int length, boolean isAscend) {
         IntPointer pointer = new IntPointer(a, 0 ,length);
         sortDown(pointer, isAscend);
-        return null;
     }
 
     //自低向上

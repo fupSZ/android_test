@@ -6,7 +6,7 @@ package com.algorithm.test;
 public class InsertSort implements ISort {
 
     @Override
-    public int[] sort(int[] a, int length, boolean isAscend) {
-        return new int[0];
+    public void sort(int[] a, int length, boolean isAscend) {
+
     }
 }
