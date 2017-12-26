@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/total"
+        layout="@layout/tax_item"/>
+
+    <include
+        android:id="@+id/base"
+        layout="@layout/tax_item"/>
+
+    <include
+        android:id="@+id/retire"
+        layout="@layout/tax_item"/>
+
+    <include
+        android:id="@+id/medical"
+        layout="@layout/tax_item"/>
+
+    <include
+        android:id="@+id/job_lose"
+        layout="@layout/tax_item"/>
+
+    <include
+        android:id="@+id/pub_funds"
+        layout="@layout/tax_item_long"/>
+
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="54dp"
+        android:onClick="onButtonClick"
+        android:text="计算"/>
+
+    <include
+        android:id="@+id/salary"
+        layout="@layout/tax_item" />
+
+    <include
+        android:id="@+id/total_salary"
+        layout="@layout/tax_item" />
+
+    <include
+        android:id="@+id/tax"
+        layout="@layout/tax_item" />
+</LinearLayout>
