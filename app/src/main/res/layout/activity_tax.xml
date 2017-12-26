@@ -45,4 +45,8 @@
     <include
         android:id="@+id/tax"
         layout="@layout/tax_item" />
+
+    <include
+        android:id="@+id/company_pay"
+        layout="@layout/tax_item" />
 </LinearLayout>

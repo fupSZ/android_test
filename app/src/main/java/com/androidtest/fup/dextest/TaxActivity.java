@@ -22,6 +22,7 @@ public class TaxActivity extends AppCompatActivity {
     private EditText salaryEdit;
     private EditText salaryTotalEdit;
     private EditText taxEdit;
+    private EditText companyPayEdit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,10 @@ public class TaxActivity extends AppCompatActivity {
         View tax = findViewById(R.id.tax);
         getNameTextView(tax).setText("个税");
         taxEdit = getValueEditText(tax);
+
+        View companyPay = findViewById(R.id.company_pay);
+        getNameTextView(companyPay).setText("公司总支出");
+        companyPayEdit = getValueEditText(companyPay);
     }
 
     public void onButtonClick(View v) {
@@ -90,6 +95,8 @@ public class TaxActivity extends AppCompatActivity {
             salaryEdit.setText("" + salaryAfterTax);
             taxEdit.setText("" + (salary - salaryAfterTax));
             salaryTotalEdit.setText("" + (salaryAfterTax + pubFunds*2));
+
+            companyPayEdit.setText("" + (total + retire*14/8 + medical*6.7f/2 + jobLose*2 + pubFunds));
             return;
         }
         if(base > 0) {//自定义基数
@@ -97,13 +104,14 @@ public class TaxActivity extends AppCompatActivity {
             medical = base*0.02f;
             jobLose = base*0.01f;
             float salary = total - retire - medical - jobLose - pubFunds;
-//            salaryEdit.setText("" + salaryAfterTax(salary));
+
             float salaryAfterTax = salaryAfterTax(salary);
             salaryEdit.setText("" + salaryAfterTax);
             taxEdit.setText("" + (salary - salaryAfterTax));
             salaryTotalEdit.setText("" + (salaryAfterTax + pubFunds*2));
 
 
+            companyPayEdit.setText("" + (total + retire*14/8 + medical*6.7f/2 + jobLose*2 + pubFunds));
             retireEdit.setText("" + retire);
             medicalEdit.setText("" + medical);
             jobLoseEdit.setText("" + jobLose);
@@ -116,12 +124,13 @@ public class TaxActivity extends AppCompatActivity {
         medical = total*0.02f;
         jobLose = total*0.01f;
         float salary = total - retire - medical - jobLose - pubFunds;
-//        salaryEdit.setText("" + salaryAfterTax(salary));
+
         float salaryAfterTax = salaryAfterTax(salary);
         salaryEdit.setText("" + salaryAfterTax);
         taxEdit.setText("" + (salary - salaryAfterTax));
         salaryTotalEdit.setText("" + (salaryAfterTax + pubFunds*2));
 
+        companyPayEdit.setText("" + (total + retire*14/8 + medical*6.7f/2 + jobLose*2 + pubFunds));
         retireEdit.setText("" + retire);
         medicalEdit.setText("" + medical);
         jobLoseEdit.setText("" + jobLose);
