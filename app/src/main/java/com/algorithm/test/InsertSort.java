@@ -1,7 +1,7 @@
 package com.algorithm.test;
 
 /**
- * Created by fup on 2017/10/26.
+ * Created by fup on 2018/1/2.
  */
 public class InsertSort implements ISort {
 
