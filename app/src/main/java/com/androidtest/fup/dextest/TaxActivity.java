@@ -210,4 +210,46 @@ public class TaxActivity extends AppCompatActivity {
         }
         return salaryBeforeTax-((salaryBeforeTax-3500)*Taxrate/100-Quickdeduction);
     }
+
+    public static float getYearAfterTax(float year) {
+        float yearPerMonth = year /12;
+        float taxbase = yearPerMonth;
+//        if(yearPerMonth )
+        int Taxrate=0;//这里税率没有除以百分比；
+        int Quickdeduction=0;
+
+        if(taxbase <=1500)
+        {
+            Taxrate=3;
+            Quickdeduction=0;
+        }else if(taxbase <=4500)
+        {
+            Taxrate=10;
+            Quickdeduction=105;
+        }else if(taxbase <=9000)
+        {
+            Taxrate=20;
+            Quickdeduction=555;
+        }else if(taxbase <=35000)
+        {
+            Taxrate=25;
+            Quickdeduction=1005;
+        }else if(taxbase <=55000)
+        {
+            Taxrate=30;
+            Quickdeduction=2755;
+        }else if(taxbase <=80000)
+        {
+            Taxrate=35;
+            Quickdeduction=5505;
+        }else
+        {
+            Taxrate=45;
+            Quickdeduction=13505;
+        }
+
+        return year - (year*Taxrate - Quickdeduction);
+    }
+
+
 }
